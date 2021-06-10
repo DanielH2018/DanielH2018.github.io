@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
       _formkey.currentState!.save();
 
       final response = await http.post(
-        Uri.http(url, '/auth/users/'),
+        Uri.https(url, '/auth/users/'),
         body: {'username': _username, 'password': _password, "email": _email},
       );
       if (response.statusCode < 300) {
@@ -53,7 +53,7 @@ class _SignUpState extends State<SignUp> {
       _formkey.currentState!.save();
 
       final response = await http.post(
-        Uri.http(url, '/auth/token/login/'),
+        Uri.https(url, '/auth/token/login/'),
         body: {'username': _username, 'password': _password},
       );
 

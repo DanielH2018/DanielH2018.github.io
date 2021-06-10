@@ -68,7 +68,7 @@ class _ProjectListPageState extends State<ProjectListPage> {
       token = prefs.getString('token')!;
     }
     final response = await http.get(
-      Uri.http(url, '/projects/',
+      Uri.https(url, '/projects/',
           {'location': widget.location.toString(), 'page': page.toString()}),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
     );
@@ -97,7 +97,7 @@ class _ProjectListPageState extends State<ProjectListPage> {
   ) async {
     // Create Project
     final response = await http.post(
-      Uri.http(url, '/projects/'),
+      Uri.https(url, '/projects/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {"name": name, 'description': description},
     );

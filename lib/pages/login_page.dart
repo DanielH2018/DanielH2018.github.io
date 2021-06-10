@@ -46,7 +46,7 @@ class _LoginState extends State<Login> {
       _formkey.currentState!.save();
 
       final response = await http.post(
-        Uri.http(url, '/auth/token/login/'),
+        Uri.https(url, '/auth/token/login/'),
         body: {'username': _username, 'password': _password},
       );
       if (response.statusCode < 300) {

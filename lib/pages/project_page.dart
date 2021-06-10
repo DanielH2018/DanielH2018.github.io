@@ -159,7 +159,7 @@ class _ProjectPageState extends State<ProjectPage>
       token = prefs.getString('token')!;
     }
     final response = await http.get(
-      Uri.http(url, '/tasks/', {
+      Uri.https(url, '/tasks/', {
         'project': widget.project.id.toString(),
         'owner': filters['owner'],
         'name': filters['name'],
@@ -194,7 +194,7 @@ class _ProjectPageState extends State<ProjectPage>
       token = prefs.getString('token')!;
     }
     final response = await http.get(
-      Uri.http(url, '/projectmemberships/', {
+      Uri.https(url, '/projectmemberships/', {
         'project': widget.project.id.toString(),
       }),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
@@ -621,7 +621,7 @@ class _ProjectPageState extends State<ProjectPage>
       int priority, int status) async {
     // Create Task
     final response = await http.post(
-      Uri.http(url, '/tasks/'),
+      Uri.https(url, '/tasks/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {
         'project': widget.project.id.toString(),
@@ -681,7 +681,7 @@ class _ProjectPageState extends State<ProjectPage>
   clearComplete() async {
     taskList[3].tasks.forEach((task) async {
       final response = await http.delete(
-        Uri.http(url, '/tasks/' + task.id.toString() + '/'),
+        Uri.https(url, '/tasks/' + task.id.toString() + '/'),
         headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       );
       if (response.statusCode == 204) {
@@ -839,7 +839,7 @@ class _ProjectPageState extends State<ProjectPage>
 
   createMembership(String username, int permissionLevel) async {
     final response = await http.post(
-      Uri.http(url, '/projectmemberships/'),
+      Uri.https(url, '/projectmemberships/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {
         "project": widget.project.id.toString(),
@@ -861,7 +861,7 @@ class _ProjectPageState extends State<ProjectPage>
 
   updateMembership(int id, int permissionLevel) async {
     final response = await http.patch(
-      Uri.http(url, '/projectmemberships/' + id.toString() + '/'),
+      Uri.https(url, '/projectmemberships/' + id.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {
         'permission_level': permissionLevel.toString(),
@@ -879,7 +879,7 @@ class _ProjectPageState extends State<ProjectPage>
 
   deleteMembership(int id, Function setState2) async {
     final response = await http.delete(
-      Uri.http(url, '/projectmemberships/' + id.toString() + '/'),
+      Uri.https(url, '/projectmemberships/' + id.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
     );
     if (response.statusCode == 204) {

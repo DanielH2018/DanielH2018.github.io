@@ -115,7 +115,7 @@ class ProjectItem extends StatelessWidget {
     String token = prefs.getString('token')!;
 
     final response = await http.patch(
-      Uri.http(url, '/projectmemberships/' + item.membership.toString() + '/'),
+      Uri.https(url, '/projectmemberships/' + item.membership.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {"location": newLocation.toString()},
     );
@@ -132,7 +132,7 @@ class ProjectItem extends StatelessWidget {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token')!;
     final response = await http.delete(
-      Uri.http(url, '/projectmemberships/' + item.membership.toString() + '/'),
+      Uri.https(url, '/projectmemberships/' + item.membership.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
     );
     if (response.statusCode == 204) {

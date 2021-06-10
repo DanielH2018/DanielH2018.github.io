@@ -406,7 +406,7 @@ class TaskItem extends StatelessWidget {
     String token = prefs.getString('token')!;
     //Update
     final response = await http.patch(
-      Uri.http(url, '/tasks/' + item.id.toString() + '/'),
+      Uri.https(url, '/tasks/' + item.id.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
       body: {
         "owner": item.owner.toString(),
@@ -429,7 +429,7 @@ class TaskItem extends StatelessWidget {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token')!;
     final response = await http.delete(
-      Uri.http(url, '/tasks/' + item.id.toString() + '/'),
+      Uri.https(url, '/tasks/' + item.id.toString() + '/'),
       headers: {HttpHeaders.authorizationHeader: ("Token " + token)},
     );
     if (response.statusCode == 204) {
